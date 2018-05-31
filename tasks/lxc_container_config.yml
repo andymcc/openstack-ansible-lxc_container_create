@@ -133,6 +133,18 @@
   with_items:
     - "{{ macs.results }}"
 
+- name: debug unsorted
+  debug:
+    var: (lxc_container_networks_combined.values() | list)
+
+- name: debug sorted
+  debug:
+    var: (lxc_container_networks_combined.values() | list) | sort
+
+- name: debug sorted2
+  debug:
+    var: (lxc_container_networks_combined.values() | list | sort)
+
 # NOTE(andymccr): We need an index for the interfaces in LXC >= 3 converting
 #                 to a list and using with_indexed_items for this purpose.
 - name: LXC host config for container networks
